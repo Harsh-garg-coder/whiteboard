@@ -1,0 +1,12 @@
+.app-container {
+    min-width : 100vw;
+    min-height : 100vh;
+    border:2px solid red;
+    display: flex;   
+}
+
+@media only screen and (max-width : 768px) {
+    .app-container{
+        flex-direction: column;
+    }
+}

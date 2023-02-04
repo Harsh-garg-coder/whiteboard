@@ -1,0 +1,10 @@
+.controlBar-container {
+    border:2px solid green;
+    width:6rem;
+}
+
+@media only screen and (max-width : 768px) {
+    .controlBar-container {
+        width:100%;
+    }
+}
