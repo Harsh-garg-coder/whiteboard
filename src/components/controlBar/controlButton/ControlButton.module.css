@@ -1,0 +1,31 @@
+.control-button-container {
+    position: relative;
+}
+
+.control-button-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:25px 10px;
+    cursor: pointer;
+    opacity: 1;
+    border-bottom: 1px solid black;
+}
+
+.control-button-icon:hover, 
+.control-button-icon.active {
+    background-color: rgba(0,0,0,0.1);
+}
+
+.control-button-icon img {
+    width:30px;
+    height:30px;
+}
+
+.more-controls-container {
+    background-color: #BDCDD6;
+    position: absolute;
+    left:calc(100% + 1px);
+    top:0px;
+    z-index: 2;
+}

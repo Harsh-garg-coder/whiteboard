@@ -1,6 +1,68 @@
 .controlBar-container {
-    border:2px solid green;
     width:6rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #BDCDD6;
+}
+
+.more-options-container {
+    padding:10px;
+}
+
+.pen-width-selector-container input {
+    width:100%;
+}
+
+.pen-color-selector-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    padding: 10px 0px;
+}
+
+.pen-color-selector-container .color-selector {
+    width:20px;
+    height:20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.black {
+    background-color: black;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.active-color {
+    border:2px solid yellow;
+}
+
+.shapes-container {
+    display: flex;
+    gap:0.5rem;
+}
+
+.shapes-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    padding:5px;
+}
+
+.shapes-image-container.active-shape-container{
+    background-color:rgba(0,0,0,0.2);
+    
+}
+.shapes-container img {
+    cursor: pointer;
 }
 
 @media only screen and (max-width : 768px) {
