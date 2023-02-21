@@ -13,7 +13,7 @@ export default function ControlButton(props) {
     }
 
     useEffect(() => {
-        if(props.children && showMoreOptions) {
+        if(props.moreControls && showMoreOptions) {
             const handleClickOutside = (e) => {
                 if(moreDetailsRef.current && !moreDetailsRef.current.contains(e.target) && !mainControlRef.current.contains(e.target)) {
                     setShowMoreOptions(false);
@@ -26,8 +26,7 @@ export default function ControlButton(props) {
                 window.removeEventListener("click", handleClickOutside)
             }
         }
-    }, [showMoreOptions, moreDetailsRef, props.children]);
-
+    }, [showMoreOptions, moreDetailsRef, props.moreControls]);
 
     return (
         <div className = {styles["control-button-container"]}>
@@ -39,12 +38,12 @@ export default function ControlButton(props) {
                 <img src = {props.imageUrl} />
             </div>
             {
-                props.children && showMoreOptions &&
+                props.moreControls && showMoreOptions &&
                 <div 
                     className = {styles["more-controls-container"]}
                     ref = {moreDetailsRef}
                 >
-                    {props.children}
+                    {props.moreControls}
                 </div>
             }
         </div>

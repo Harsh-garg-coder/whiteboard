@@ -8,13 +8,12 @@ export default function App() {
   const [pencilColor, setPencilColor] = useState("black");
   const [eraserRadius, setEraserRadius] = useState(20);
   const [currentShape, setCurrentShape] = useState("rectangle");
-  const [currentActiveControlIndex, setCurrentActiveControlIndex] = useState(0);
+  const [currentActiveControl, setCurrentActiveControl] = useState("pencil");
 
-  console.log("pencilColor", pencilColor, "pencilWidth", pencilWidth, "eraserRadius", eraserRadius, "currentShape", currentShape, "currentActiveIndex", currentActiveControlIndex);
   return (
     <div className = {styles["app-container"]}>
       <ControlBar 
-        penWidth = {pencilWidth}
+        pencilWidth = {pencilWidth}
         setPencilWidth = {setPencilWidth}
         pencilColor = {pencilColor}
         setPencilColor = {setPencilColor}
@@ -22,11 +21,11 @@ export default function App() {
         setCurrentShape = {setCurrentShape}
         eraserRadius = {eraserRadius}
         setEraserRadius = {setEraserRadius}
-        setCurrentActiveControlIndex = {setCurrentActiveControlIndex}
-        currentActiveControlIndex = {currentActiveControlIndex}
+        setCurrentActiveControl = {setCurrentActiveControl}
+        currentActiveControl = {currentActiveControl}
       />
       <DrawingBoard 
-        currentActiveControlIndex = {currentActiveControlIndex}
+        currentActiveControl = {currentActiveControl}
         pencilColor = {pencilColor}
         pencilWidth = {pencilWidth}
         currentShape = {currentShape}

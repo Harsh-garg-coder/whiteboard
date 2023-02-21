@@ -145,11 +145,11 @@ export default function DrawingBoard(props) {
 
         removeAllEventListeners();
 
-        if(props.currentActiveControlIndex === 0) { // pencil
+        if(props.currentActiveControl === "pencil") {
             setEventListenersForPencil();
-        } else if (props.currentActiveControlIndex === 1) {
+        } else if (props.currentActiveControl === "shapes") {
             setShapesEventListeners();
-        } else if(props.currentActiveControlIndex === 2) {
+        } else if(props.currentActiveControl === "eraser") {
             setEraserEventListener()
         }
     }
@@ -157,8 +157,8 @@ export default function DrawingBoard(props) {
     useEffect(() => {
         createContext();
     }, []);
+    
     useEffect(() => {
-        console.log(props);
         createContextAndSetEventListeners();
     }, [props.currentActiveControlIndex, props.pencilColor, props.pencilWidth, props.currentShape, props.eraserRadius]);
     

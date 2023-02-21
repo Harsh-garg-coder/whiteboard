@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./ControlBar.module.css";
 import ControlButton from "./controlButton/ControlButton";
 import controlsImage, { pencilColors, shapes }  from "./config";
@@ -6,9 +5,9 @@ import controlsImage, { pencilColors, shapes }  from "./config";
 
 export default function ControlBar(props) {
 
-    const penMoreOptionsContainer = (
+    const pencilMoreOptionsContainer = (
         <div className = {styles["more-options-container"]}>
-            <div className = {styles["pen-width-selector-container"]}>
+            <div className = {styles["pencil-width-selector-container"]}>
                 <input 
                     type = "range" 
                     min = "1"
@@ -17,7 +16,7 @@ export default function ControlBar(props) {
                     onChange = {(e) => props.setPencilWidth(e.target.value)}
                 />
             </div>
-            <div className = {styles["pen-color-selector-container"]}>
+            <div className = {styles["pencil-color-selector-container"]}>
                 {
                     pencilColors.map((currentColor, index) => {
                         return (
@@ -74,14 +73,14 @@ export default function ControlBar(props) {
         </div>
     )
 
-    const findChildren = (index) => {
-        if(index === 0) {
-            return penMoreOptionsContainer;
+    const findChildren = (name) => {
+        if(name === "pencil") {
+            return pencilMoreOptionsContainer;
         } 
-        if(index === 1) {
+        if(name === "shapes") {
             return shapesMoreOptionsContainer;
         }
-        if(index === 2) {
+        if(name === "eraser") {
             return eraserMoreOptionsContainer;
         }
         return null;
@@ -93,11 +92,11 @@ export default function ControlBar(props) {
                 controlsImage.map((currentControl, index) => {
                     return (
                         <ControlButton 
-                            key = {index}
+                            key = {"control_btn" + index}
                             imageUrl = {currentControl.image}
-                            children = {findChildren(index)}
-                            isActive = {props.currentActiveControlIndex === index}
-                            setActive = {() => props.setCurrentActiveControlIndex(index)}
+                            moreControls = {findChildren(currentControl.name)}
+                            isActive = {props.currentActiveControl === currentControl.name}
+                            setActive = {() => props.setCurrentActiveControl(currentControl.name)}
                         />
                     )
                 })
