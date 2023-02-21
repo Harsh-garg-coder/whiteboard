@@ -9,11 +9,11 @@
     padding:10px;
 }
 
-.pen-width-selector-container input {
+.pencil-width-selector-container input {
     width:100%;
 }
 
-.pen-color-selector-container {
+.pencil-color-selector-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -21,7 +21,7 @@
     padding: 10px 0px;
 }
 
-.pen-color-selector-container .color-selector {
+.pencil-color-selector-container .color-selector {
     width:20px;
     height:20px;
     border-radius: 50%;
