@@ -26,6 +26,7 @@ export default function App() {
       />
       <DrawingBoard 
         currentActiveControl = {currentActiveControl}
+        setCurrentActiveControl = {setCurrentActiveControl}
         pencilColor = {pencilColor}
         pencilWidth = {pencilWidth}
         currentShape = {currentShape}

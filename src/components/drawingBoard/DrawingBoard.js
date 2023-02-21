@@ -17,9 +17,12 @@ export default function DrawingBoard(props) {
         const canvasContainer = canvasContainerRef.current;
 
         canvas.width = canvasContainer.clientWidth;
-        canvas.height = canvasContainer.clientWidth;
+        canvas.height = canvasContainer.clientHeight;
 
         context = canvas.getContext("2d");
+
+        context.fillStyle = "white";
+        context.fillRect(0,0,canvasContainer.clientWidth, canvasContainer.clientHeight);
     }
 
     const removeAllEventListeners = () => {
@@ -40,7 +43,6 @@ export default function DrawingBoard(props) {
         let isPencilMouseDown = false;
 
         const startLine = (e) => {
-            console.log("down");
             isPencilMouseDown = true;
 
             context.beginPath();
@@ -116,12 +118,10 @@ export default function DrawingBoard(props) {
         }
 
         const moveEraserWithMouse = (e) => {
-            // console.log(eraserRef.current.style.height)
             eraserRef.current.style.top =  `${e.clientY - props.eraserRadius}px`;
             eraserRef.current.style.left = `${e.clientX - 100 - props.eraserRadius}px`
 
             if(isMouseDown) {
-                console.log("erasing");
                 context.beginPath();
                 context.arc(e.clientX - 100, e.clientY, props.eraserRadius, 0, 2 * Math.PI);
                 context.fillStyle = "white";
@@ -141,6 +141,15 @@ export default function DrawingBoard(props) {
         ]);
     }
 
+    const downloadBoard = () => {
+        const url = canvasRef.current?.toDataURL();
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "board";
+        a.click();
+    }
+
     const createContextAndSetEventListeners = () => {
 
         removeAllEventListeners();
@@ -151,6 +160,9 @@ export default function DrawingBoard(props) {
             setShapesEventListeners();
         } else if(props.currentActiveControl === "eraser") {
             setEraserEventListener()
+        } else if(props.currentActiveControl === "download") {
+            downloadBoard();
+            props.setCurrentActiveControl("pencil");
         }
     }
 
@@ -160,7 +172,7 @@ export default function DrawingBoard(props) {
     
     useEffect(() => {
         createContextAndSetEventListeners();
-    }, [props.currentActiveControlIndex, props.pencilColor, props.pencilWidth, props.currentShape, props.eraserRadius]);
+    }, [props.currentActiveControl, props.pencilColor, props.pencilWidth, props.currentShape, props.eraserRadius]);
     
     return (
         <div id = "canvas-container" ref = {canvasContainerRef} className = {styles["drawingBoard-container"]}>
