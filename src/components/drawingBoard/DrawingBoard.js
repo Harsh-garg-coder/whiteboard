@@ -150,6 +150,12 @@ export default function DrawingBoard(props) {
         a.click();
     }
 
+    const clearBoard = () => {
+        const canvasContainer = canvasContainerRef.current;
+        context.fillStyle = "white";
+        context.fillRect(0, 0, canvasContainer.clientWidth, canvasContainer.clientHeight);
+    }
+
     const createContextAndSetEventListeners = () => {
 
         removeAllEventListeners();
@@ -162,6 +168,9 @@ export default function DrawingBoard(props) {
             setEraserEventListener()
         } else if(props.currentActiveControl === "download") {
             downloadBoard();
+            props.setCurrentActiveControl("pencil");
+        } else if(props.currentActiveControl === "delete") {
+            clearBoard();
             props.setCurrentActiveControl("pencil");
         }
     }

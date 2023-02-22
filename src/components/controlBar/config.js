@@ -4,12 +4,14 @@ import EraserImage from "../../images/eraser-icon.svg";
 import DownloadImage from "../../images/download-icon.svg"
 import RectangleImage from "../../images/rectangle-icon.png";
 import CircleImage from "../../images/circle-icon.svg";
+import DeleteImage from "../../images/delete-icon.svg";
 
 const controlsImage = [
     { image : PencilImage, name : "pencil"},
     { image : ShapesImage, name : "shapes"},
     { image : EraserImage, name : "eraser"},
-    { image : DownloadImage, name : "download"}
+    { image : DownloadImage, name : "download"},
+    { image : DeleteImage, name : "delete"}
 ];
 
 export const pencilColors = ["black", "red", "blue"];
