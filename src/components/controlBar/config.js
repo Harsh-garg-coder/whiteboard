@@ -5,13 +5,15 @@ import DownloadImage from "../../images/download-icon.svg"
 import RectangleImage from "../../images/rectangle-icon.png";
 import CircleImage from "../../images/circle-icon.svg";
 import DeleteImage from "../../images/delete-icon.svg";
+import UploadImage from "../../images/upload-image-icon.svg";
 
 const controlsImage = [
     { image : PencilImage, name : "pencil"},
     { image : ShapesImage, name : "shapes"},
     { image : EraserImage, name : "eraser"},
     { image : DownloadImage, name : "download"},
-    { image : DeleteImage, name : "delete"}
+    { image : DeleteImage, name : "delete"},
+    { image : UploadImage, name : "upload-image"}
 ];
 
 export const pencilColors = ["black", "red", "blue"];
