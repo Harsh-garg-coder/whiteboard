@@ -156,6 +156,28 @@ export default function DrawingBoard(props) {
         context.fillRect(0, 0, canvasContainer.clientWidth, canvasContainer.clientHeight);
     }
 
+    const uploadImage = () => {
+        
+        const imageInput = document.createElement("input");
+        imageInput.setAttribute("type", "file");
+        imageInput.click();
+
+        imageInput.addEventListener("change", () => {
+            if(imageInput.files.length !== 0) {
+                const blobUrl = URL.createObjectURL(imageInput.files[0]);
+    
+                const image = new Image();
+                image.src = blobUrl;
+    
+                const canvasContainer = canvasContainerRef.current;
+                image.onload = () => {
+                    context.drawImage(image, 0, 0, canvasContainer.clientWidth, canvasContainer.clientHeight);
+                }
+            }
+            // console.log(URL.createObjectURL(imageInput.files[0]));
+        })
+    }
+
     const createContextAndSetEventListeners = () => {
 
         removeAllEventListeners();
@@ -171,6 +193,9 @@ export default function DrawingBoard(props) {
             props.setCurrentActiveControl("pencil");
         } else if(props.currentActiveControl === "delete") {
             clearBoard();
+            props.setCurrentActiveControl("pencil");
+        } else if(props.currentActiveControl === "upload-image") {
+            uploadImage();
             props.setCurrentActiveControl("pencil");
         }
     }
@@ -198,6 +223,6 @@ export default function DrawingBoard(props) {
                 ref = {eraserRef}
             >
             </div>
-        </div>
+        </div>  
     );
 }
