@@ -1,9 +1,4 @@
 .control-bar-container {
-    /* width:6rem; */
-    /* display: inline-block; */
-    /* flex-direction: column; */
-    /* background-color: #BDCDD6; */
-    /* border:2px solid red; */
     display: flex;
 }
 

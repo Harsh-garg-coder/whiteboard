@@ -12,9 +12,6 @@ export default function App() {
 
   return (
     <div className = {styles["app-container"]}>
-      {/* <div className = {styles["drawing-board-container"]}>
-        
-      </div> */}
       <DrawingBoard 
         currentActiveControl = {currentActiveControl}
         setCurrentActiveControl = {setCurrentActiveControl}
@@ -36,8 +33,6 @@ export default function App() {
         setCurrentActiveControl = {setCurrentActiveControl}
         currentActiveControl = {currentActiveControl}
       />
-
-      
     </div>
   )
 }
