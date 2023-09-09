@@ -1,5 +1,6 @@
 .control-button-container {
     position: relative;
+    /* border:2px solid green; */
 }
 
 .control-button-icon {
@@ -8,13 +9,18 @@
     align-items: center;
     padding:25px 10px;
     cursor: pointer;
-    opacity: 1;
-    border-bottom: 1px solid black;
+    /* opacity: 1; */
+    /* border-bottom: 1px solid black; */
+    /* border:2px solid red; */
+    width:70px;
+    height:70px;
+    border:2px solid black;
+
 }
 
-.control-button-icon:hover, 
+.control-button-icon:hover,
 .control-button-icon.active {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.2);
 }
 
 .control-button-icon img {
@@ -23,9 +29,12 @@
 }
 
 .more-controls-container {
-    background-color: #BDCDD6;
+    /* background-color: #BDCDD6; */
     position: absolute;
     left:calc(100% + 1px);
     top:0px;
     z-index: 2;
+    background-color:orange;
+    border-radius:8px;
+    /* border:3px solid black; */
 }

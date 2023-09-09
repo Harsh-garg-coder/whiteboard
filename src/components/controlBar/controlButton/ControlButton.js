@@ -37,6 +37,7 @@ export default function ControlButton(props) {
             >
                 <img src = {props.imageUrl} />
             </div>
+            
             {
                 props.moreControls && showMoreOptions &&
                 <div 

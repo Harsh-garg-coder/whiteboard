@@ -87,7 +87,7 @@ export default function ControlBar(props) {
     }
 
     return(
-        <div className = {styles["controlBar-container"]}>
+        <div className = {styles["control-bar-container"]}>
             {
                 controlsImage.map((currentControl, index) => {
                     return (

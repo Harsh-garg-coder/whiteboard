@@ -1,8 +1,10 @@
-.controlBar-container {
-    width:6rem;
+.control-bar-container {
+    /* width:6rem; */
+    /* display: inline-block; */
+    /* flex-direction: column; */
+    /* background-color: #BDCDD6; */
+    /* border:2px solid red; */
     display: flex;
-    flex-direction: column;
-    background-color: #BDCDD6;
 }
 
 .more-options-container {

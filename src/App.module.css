@@ -1,8 +1,13 @@
 .app-container {
     width : 100vw;
     height : 100vh;
-    display: flex; 
     overflow: hidden;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    background-image:url("/public/wodden-texture.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 @media only screen and (max-width : 768px) {

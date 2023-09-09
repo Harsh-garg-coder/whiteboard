@@ -1,6 +1,13 @@
-.drawingBoard-container {
-    width:calc(100% - 6rem);
+.drawing-board-container {
+    /* width:calc(100% - 6rem); */
     position: relative;
+    width:85%;
+    height:80%;
+    border:2px solid red;
+    border-radius:11px;
+    border:20px solid black;
+    background: white;
+    margin-top:30px;
 }
 
 .eraser-circle {
@@ -9,5 +16,4 @@
     left:0px;
     top:0px;
     border-radius: 50%;
-    /* display:none; */
 }

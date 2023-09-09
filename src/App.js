@@ -12,6 +12,18 @@ export default function App() {
 
   return (
     <div className = {styles["app-container"]}>
+      {/* <div className = {styles["drawing-board-container"]}>
+        
+      </div> */}
+      <DrawingBoard 
+        currentActiveControl = {currentActiveControl}
+        setCurrentActiveControl = {setCurrentActiveControl}
+        pencilColor = {pencilColor}
+        pencilWidth = {pencilWidth}
+        currentShape = {currentShape}
+        eraserRadius = {eraserRadius}
+      />
+
       <ControlBar 
         pencilWidth = {pencilWidth}
         setPencilWidth = {setPencilWidth}
@@ -24,14 +36,8 @@ export default function App() {
         setCurrentActiveControl = {setCurrentActiveControl}
         currentActiveControl = {currentActiveControl}
       />
-      <DrawingBoard 
-        currentActiveControl = {currentActiveControl}
-        setCurrentActiveControl = {setCurrentActiveControl}
-        pencilColor = {pencilColor}
-        pencilWidth = {pencilWidth}
-        currentShape = {currentShape}
-        eraserRadius = {eraserRadius}
-      />
+
+      
     </div>
   )
 }
