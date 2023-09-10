@@ -107,8 +107,10 @@ export default function DrawingBoard(props) {
                 if(props.currentShape === "rectangle") {
                     context.rect(startX, startY, e.clientX - leftDistanceOfDrawingBoard - startX, e.clientY - topDistanceOfDrawingBoard - startY);
                 } else {
-                    let radius = Math.sqrt((e.clientX - leftDistanceOfDrawingBoard - startX) * (e.clientX - leftDistanceOfDrawingBoard - startX) + (e.clientY - topDistanceOfDrawingBoard - startY) * (e.clientY - topDistanceOfDrawingBoard - startY));
-                    context.arc(startX, startY, radius, 0, 2 * Math.PI);
+                    let x2minusx1 = (e.clientX - leftDistanceOfDrawingBoard - startX);
+                    let y2minusy1 = (e.clientY - topDistanceOfDrawingBoard - startY);
+                    let diameter = Math.sqrt( x2minusx1 * x2minusx1 + y2minusy1 * y2minusy1);
+                    context.arc((e.clientX - leftDistanceOfDrawingBoard + startX) / 2 , (e.clientY - topDistanceOfDrawingBoard + startY) / 2, diameter / 2, 0, 2 * Math.PI);
                 }
                 context.stroke();
             }
