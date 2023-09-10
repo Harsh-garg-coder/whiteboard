@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/whiteboard/static/css/main.93cf3222.css",
-    "main.js": "/whiteboard/static/js/main.82ecc4ad.js",
+    "main.css": "/whiteboard/static/css/main.87704f49.css",
+    "main.js": "/whiteboard/static/js/main.abb97f12.js",
     "static/media/wodden-texture.jpg": "/whiteboard/static/media/wodden-texture.d513bbec5076b4dc758c.jpg",
     "static/media/upload-image-icon.svg": "/whiteboard/static/media/upload-image-icon.15512ff08c8d07b893250f5197b94b47.svg",
     "static/media/delete-icon.svg": "/whiteboard/static/media/delete-icon.6c2d66597491c2da1662f1ca889209e1.svg",
@@ -11,11 +11,11 @@
     "static/media/eraser-icon.svg": "/whiteboard/static/media/eraser-icon.15dcb092b51b8dac31ee2865cdf13701.svg",
     "static/media/pencil-icon.svg": "/whiteboard/static/media/pencil-icon.6a3dc7541df5835f4506d851d67b092d.svg",
     "static/media/circle-icon.svg": "/whiteboard/static/media/circle-icon.1d2903d2bdebb4914cb12f546e76f70f.svg",
-    "main.93cf3222.css.map": "/whiteboard/static/css/main.93cf3222.css.map",
-    "main.82ecc4ad.js.map": "/whiteboard/static/js/main.82ecc4ad.js.map"
+    "main.87704f49.css.map": "/whiteboard/static/css/main.87704f49.css.map",
+    "main.abb97f12.js.map": "/whiteboard/static/js/main.abb97f12.js.map"
   },
   "entrypoints": [
-    "static/css/main.93cf3222.css",
-    "static/js/main.82ecc4ad.js"
+    "static/css/main.87704f49.css",
+    "static/js/main.abb97f12.js"
   ]
 }
