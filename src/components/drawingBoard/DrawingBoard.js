@@ -57,15 +57,15 @@ export default function DrawingBoard(props) {
                 context.beginPath();
                 let xPosition = "";
                 let yPosition = "";
-                console.log(e);
+
                 if(e.changedTouches) {
                     xPosition = e.changedTouches[0].clientX;
                     yPosition = e.changedTouches[0].clientY;
-                    console.log("start", xPosition, yPosition);
                 } else {
                     xPosition = e.clientX;
                     yPosition = e.clientY;
                 }
+
                 context.moveTo(xPosition- leftDistanceOfDrawingBoard, yPosition - topDistanceOfDrawingBoard);
 
                 context.strokeStyle = props.color;
@@ -84,7 +84,6 @@ export default function DrawingBoard(props) {
                     if(e.changedTouches) {
                         xPosition = e.changedTouches[0].clientX;
                         yPosition = e.changedTouches[0].clientY;
-                        console.log("move", xPosition, yPosition);
                     } else {
                         xPosition = e.clientX;
                         yPosition = e.clientY;
@@ -227,6 +226,9 @@ export default function DrawingBoard(props) {
             canvasRef.current.addEventListener("touchmove", moveEraserWithMouse);
 
             canvasRef.current.addEventListener("mousedown", handleMouseDown);
+            canvasRef.current.addEventListener("touchstart", handleMouseDown);
+
+            eraserRef.current.addEventListener("mousedown", handleMouseDown);
             eraserRef.current.addEventListener("touchstart", handleMouseDown);
 
             canvasRef.current.addEventListener("mouseup", handleMouseUp);
@@ -287,7 +289,6 @@ export default function DrawingBoard(props) {
                         context.drawImage(image, 0, 0, canvasContainer.clientWidth, canvasContainer.clientHeight);
                     }
                 }
-                // console.log(URL.createObjectURL(imageInput.files[0]));
             })
         } catch(error) {
             console.log(error);
