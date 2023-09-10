@@ -56,7 +56,7 @@ export default function DrawingBoard(props) {
 
                 context.beginPath();
                 context.moveTo(e.clientX - leftDistanceOfDrawingBoard, e.clientY - topDistanceOfDrawingBoard);
-                context.strokeStyle = props.pencilColor;
+                context.strokeStyle = props.color;
                 context.lineWidth = props.pencilWidth;
             }
 
@@ -102,6 +102,8 @@ export default function DrawingBoard(props) {
 
             const handleMouseUp = (e) => {
                 context.beginPath();
+                context.strokeStyle = props.color;
+                context.lineWidth = "4";
                 if(props.currentShape === "rectangle") {
                     context.rect(startX, startY, e.clientX - leftDistanceOfDrawingBoard - startX, e.clientY - topDistanceOfDrawingBoard - startY);
                 } else {
@@ -246,7 +248,7 @@ export default function DrawingBoard(props) {
     
     useEffect(() => {
         createContextAndSetEventListeners();
-    }, [props.currentActiveControl, props.pencilColor, props.pencilWidth, props.currentShape, props.eraserRadius]);
+    }, [props.currentActiveControl, props.color, props.pencilWidth, props.currentShape, props.eraserRadius]);
     
     return (
         <div ref = {canvasContainerRef} className = {styles["drawing-board-container"]}>

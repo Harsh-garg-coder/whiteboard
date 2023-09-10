@@ -7,38 +7,13 @@
 }
 
 .pencil-width-selector-container input {
-    width:100%;
+    width:100px;
 }
 
-.pencil-color-selector-container {
+.color-selector-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
     gap:10px;
-    padding: 10px 0px;
-}
-
-.pencil-color-selector-container .color-selector {
-    width:20px;
-    height:20px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-
-.black {
-    background-color: black;
-}
-
-.red {
-    background-color: red;
-}
-
-.blue {
-    background-color: blue;
-}
-
-.active-color {
-    border:2px solid yellow;
+    align-items: center;
 }
 
 .shapes-container {

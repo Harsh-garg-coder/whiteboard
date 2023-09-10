@@ -6,8 +6,10 @@ import RectangleImage from "../../images/rectangle-icon.png";
 import CircleImage from "../../images/circle-icon.svg";
 import DeleteImage from "../../images/delete-icon.svg";
 import UploadImage from "../../images/upload-image-icon.svg";
+import ColorPicker from "../../images/color.png";
 
 const controlsImage = [
+    { image: ColorPicker, name: "color"},
     { image : PencilImage, name : "pencil"},
     { image : ShapesImage, name : "shapes"},
     { image : EraserImage, name : "eraser"},
@@ -15,8 +17,6 @@ const controlsImage = [
     { image : DeleteImage, name : "delete"},
     { image : UploadImage, name : "upload-image"}
 ];
-
-export const pencilColors = ["black", "red", "blue"];
 
 export const shapes = [
     { image : RectangleImage, alt : "rectangle-icon", name : "rectangle"},

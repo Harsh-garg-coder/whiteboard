@@ -1,6 +1,6 @@
 import styles from "./ControlBar.module.css";
 import ControlButton from "./controlButton/ControlButton";
-import controlsImage, { pencilColors, shapes }  from "./config";
+import controlsImage, { shapes }  from "./config";
 
 
 export default function ControlBar(props) {
@@ -15,20 +15,6 @@ export default function ControlBar(props) {
                     value = {props.pencilWidth}
                     onChange = {(e) => props.setPencilWidth(e.target.value)}
                 />
-            </div>
-            <div className = {styles["pencil-color-selector-container"]}>
-                {
-                    pencilColors.map((currentColor, index) => {
-                        return (
-                            <div 
-                                key = {index}
-                                className = {[styles["color-selector"], styles[currentColor], props.pencilColor === currentColor && styles["active-color"]].join(" ")}
-                                onClick = {() => (props.setPencilColor(currentColor))}
-                            >
-                            </div>
-                        )
-                    })
-                }
             </div>
         </div>
     );
@@ -73,6 +59,19 @@ export default function ControlBar(props) {
         </div>
     )
 
+    const colorMoreOptionsContainer = (
+        <div className = {styles["more-options-container"]}>
+            <div className = {styles["color-selector-container"]}>
+                <input 
+                    type = "color" 
+                    value = {props.color} 
+                    onChange = {(e) => props.setColor(e.target.value)}
+                    onBlur={() => props.setCurrentActiveControl(props.previousActiveControl)}
+                />
+            </div>
+        </div>
+    )
+
     const findChildren = (name) => {
         if(name === "pencil") {
             return pencilMoreOptionsContainer;
@@ -82,6 +81,9 @@ export default function ControlBar(props) {
         }
         if(name === "eraser") {
             return eraserMoreOptionsContainer;
+        }
+        if(name === "color") {
+            return colorMoreOptionsContainer;
         }
         return null;
     }
@@ -96,7 +98,10 @@ export default function ControlBar(props) {
                             imageUrl = {currentControl.image}
                             moreControls = {findChildren(currentControl.name)}
                             isActive = {props.currentActiveControl === currentControl.name}
-                            setActive = {() => props.setCurrentActiveControl(currentControl.name)}
+                            setActive = {() => {
+                                props.setPreviousActiveControl(props.currentActiveControl)
+                                props.setCurrentActiveControl(currentControl.name)
+                            }}
                         />
                     )
                 })
