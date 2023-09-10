@@ -130,6 +130,9 @@ export default function DrawingBoard(props) {
                 if(e.changedTouches) {
                     startX = e.changedTouches[0].clientX;
                     startY = e.changedTouches[0].clientY;
+                } else {
+                    startX = e.clientX;
+                    startY = e.clientY;
                 }
 
                 startX -= leftDistanceOfDrawingBoard;
@@ -237,7 +240,7 @@ export default function DrawingBoard(props) {
                 { name : "touchstart", event : handleMouseDown}, 
                 { name : "touchend", event : handleMouseUp},
             ]);
-            
+
         } catch(error) {
             console.log(error);
         }
