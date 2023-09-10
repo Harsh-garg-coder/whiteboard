@@ -55,7 +55,19 @@ export default function DrawingBoard(props) {
                 isPencilMouseDown = true;
 
                 context.beginPath();
-                context.moveTo(e.clientX - leftDistanceOfDrawingBoard, e.clientY - topDistanceOfDrawingBoard);
+                let xPosition = "";
+                let yPosition = "";
+                console.log(e);
+                if(e.changedTouches) {
+                    xPosition = e.changedTouches[0].clientX;
+                    yPosition = e.changedTouches[0].clientY;
+                    console.log("start", xPosition, yPosition);
+                } else {
+                    xPosition = e.clientX;
+                    yPosition = e.clientY;
+                }
+                context.moveTo(xPosition- leftDistanceOfDrawingBoard, yPosition - topDistanceOfDrawingBoard);
+
                 context.strokeStyle = props.color;
                 context.lineWidth = props.pencilWidth;
             }
@@ -66,19 +78,38 @@ export default function DrawingBoard(props) {
 
             const drawLine = (e) => {
                 if(isPencilMouseDown) {
-                    context.lineTo(e.clientX - leftDistanceOfDrawingBoard, e.clientY - topDistanceOfDrawingBoard);
+                    let xPosition = "";
+                    let yPosition = "";
+
+                    if(e.changedTouches) {
+                        xPosition = e.changedTouches[0].clientX;
+                        yPosition = e.changedTouches[0].clientY;
+                        console.log("move", xPosition, yPosition);
+                    } else {
+                        xPosition = e.clientX;
+                        yPosition = e.clientY;
+                    }
+                    context.lineTo(xPosition - leftDistanceOfDrawingBoard, yPosition - topDistanceOfDrawingBoard);
                     context.stroke();
                 }
             }
 
             canvasRef.current.addEventListener("mousedown", startLine);
+            canvasRef.current.addEventListener("touchstart", startLine);
+
             canvasRef.current.addEventListener("mouseup", endLine);
+            canvasRef.current.addEventListener("touchend",  endLine);
+
             canvasRef.current.addEventListener("mousemove", drawLine);
+            canvasRef.current.addEventListener("touchmove",  drawLine);
 
             setCurrentActiveEventListeners([
                 { name : "mousedown", event: startLine},
                 { name : "mouseup", event : endLine},
-                { name : "mousemove", drawLine}
+                { name : "mousemove", event : drawLine},
+                { name : "touchstart", event : startLine},
+                { name : "touchend", event : endLine},
+                { name : "touchmove", event : drawLine}
             ]);
         } catch(error) {
             console.log(error);
@@ -96,31 +127,53 @@ export default function DrawingBoard(props) {
             const topDistanceOfDrawingBoard = canvasContainerRef.current.getBoundingClientRect().top + 10;
 
             const handleMouseDown = (e) => {
-                startX = e.clientX - leftDistanceOfDrawingBoard;
-                startY = e.clientY - topDistanceOfDrawingBoard;
+                if(e.changedTouches) {
+                    startX = e.changedTouches[0].clientX;
+                    startY = e.changedTouches[0].clientY;
+                }
+
+                startX -= leftDistanceOfDrawingBoard;
+                startY -= topDistanceOfDrawingBoard;
             }
 
             const handleMouseUp = (e) => {
                 context.beginPath();
                 context.strokeStyle = props.color;
                 context.lineWidth = "4";
-                if(props.currentShape === "rectangle") {
-                    context.rect(startX, startY, e.clientX - leftDistanceOfDrawingBoard - startX, e.clientY - topDistanceOfDrawingBoard - startY);
+
+                let xPosition = "";
+                let yPosition = "";
+
+                if(e.changedTouches) {
+                    xPosition = e.changedTouches[0].clientX;
+                    yPosition = e.changedTouches[0].clientY;
                 } else {
-                    let x2minusx1 = (e.clientX - leftDistanceOfDrawingBoard - startX);
-                    let y2minusy1 = (e.clientY - topDistanceOfDrawingBoard - startY);
+                    xPosition = e.clientX;
+                    yPosition = e.clientY;
+                }
+
+                if(props.currentShape === "rectangle") {
+                    context.rect(startX, startY, xPosition - leftDistanceOfDrawingBoard - startX, yPosition - topDistanceOfDrawingBoard - startY);
+                } else {
+                    let x2minusx1 = (xPosition - leftDistanceOfDrawingBoard - startX);
+                    let y2minusy1 = (yPosition - topDistanceOfDrawingBoard - startY);
                     let diameter = Math.sqrt( x2minusx1 * x2minusx1 + y2minusy1 * y2minusy1);
-                    context.arc((e.clientX - leftDistanceOfDrawingBoard + startX) / 2 , (e.clientY - topDistanceOfDrawingBoard + startY) / 2, diameter / 2, 0, 2 * Math.PI);
+                    context.arc((xPosition - leftDistanceOfDrawingBoard + startX) / 2 , (yPosition - topDistanceOfDrawingBoard + startY) / 2, diameter / 2, 0, 2 * Math.PI);
                 }
                 context.stroke();
             }
 
             canvasRef.current.addEventListener("mousedown", handleMouseDown);
+            canvasRef.current.addEventListener("touchstart", handleMouseDown);
+
             canvasRef.current.addEventListener("mouseup", handleMouseUp);
+            canvasRef.current.addEventListener("touchend", handleMouseUp);
 
             setCurrentActiveEventListeners([
                 { name : "mousedown", event : handleMouseDown},
-                { name : "mouseup", event : handleMouseUp}
+                { name : "mouseup", event : handleMouseUp},
+                { name : "touchstart", event : handleMouseDown},
+                { name : "touchend", event : handleMouseUp}
             ]);
         } catch(error) {
             console.log(error);
@@ -145,27 +198,46 @@ export default function DrawingBoard(props) {
             }
 
             const moveEraserWithMouse = (e) => {
-                eraserRef.current.style.top =  `${e.clientY - topDistanceOfDrawingBoard - props.eraserRadius}px`;
-                eraserRef.current.style.left = `${e.clientX - leftDistanceOfDrawingBoard - props.eraserRadius}px`
+                let xPosition = "";
+                let yPosition = "";
+
+                if(e.changedTouches) {
+                    xPosition = e.changedTouches[0].clientX;
+                    yPosition = e.changedTouches[0].clientY;
+                } else {
+                    xPosition = e.clientX;
+                    yPosition = e.clientY;
+                }
+
+                eraserRef.current.style.left = `${xPosition - leftDistanceOfDrawingBoard - props.eraserRadius}px`
+                eraserRef.current.style.top =  `${yPosition - topDistanceOfDrawingBoard - props.eraserRadius}px`;
 
                 if(isMouseDown) {
                     context.beginPath();
-                    context.arc(e.clientX - leftDistanceOfDrawingBoard, e.clientY - topDistanceOfDrawingBoard, props.eraserRadius, 0, 2 * Math.PI);
+                    context.arc(xPosition - leftDistanceOfDrawingBoard, yPosition - topDistanceOfDrawingBoard, props.eraserRadius, 0, 2 * Math.PI);
                     context.fillStyle = "white";
                     context.fill();
                 }
             }
 
             canvasRef.current.addEventListener("mousemove", moveEraserWithMouse);
+            canvasRef.current.addEventListener("touchmove", moveEraserWithMouse);
+
             canvasRef.current.addEventListener("mousedown", handleMouseDown);
-            eraserRef.current.addEventListener("mousedown", handleMouseDown);
+            eraserRef.current.addEventListener("touchstart", handleMouseDown);
+
             canvasRef.current.addEventListener("mouseup", handleMouseUp);
+            canvasRef.current.addEventListener("touchend", handleMouseUp);
 
             setCurrentActiveEventListeners([
                 { name : "mousemove", event : moveEraserWithMouse},
                 { name : "mousedown", event : handleMouseDown}, 
-                { name : "mouseup", event : handleMouseUp}
+                { name : "mouseup", event : handleMouseUp},
+                { name : "touchmove", event : moveEraserWithMouse},
+                { name : "touchstart", event : handleMouseDown}, 
+                { name : "touchend", event : handleMouseUp},
             ]);
+            
         } catch(error) {
             console.log(error);
         }
